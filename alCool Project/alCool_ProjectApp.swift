@@ -11,7 +11,8 @@ import SwiftUI
 struct alCool_ProjectApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StoriesView()
+                .preferredColorScheme(.dark)
         }
     }
 }

@@ -46,6 +46,7 @@ struct StoriesView: View {
                         } label: {
                             Image(systemName: "questionmark")
                                 .foregroundColor(accentColor)
+                                .font(.caption) //Piccolo abbastanza?
                         }
                         Spacer()
                         Button {

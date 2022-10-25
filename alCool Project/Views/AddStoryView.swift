@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-// Commento di prova: Arturo
+// Commento di prova: Arturo. Test delle funzioni commit e push
 
 struct AddStoryView: View {
     @Environment(\.dismiss) var dismiss

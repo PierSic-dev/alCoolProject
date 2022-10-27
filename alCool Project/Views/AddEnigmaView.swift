@@ -10,9 +10,18 @@ import PhotosUI
 
 struct AddEnigmaView: View {
     let accentColor = Color(.systemPurple)
+    
     @Environment(\.dismiss) var dismiss
+    
     @State var selectedPhoto: [PhotosPickerItem] = []
     @State var data: Data?
+    
+    // Enigma text data
+    @State private var enigmaName = ""
+    @State private var enigmaRiddle = ""
+    @State private var textEditorHeight: CGFloat = 100
+    @State private var enigmaHint = ""
+    @State private var enigmaSolution = ""
     
     var body: some View {
         NavigationStack {
@@ -31,7 +40,23 @@ struct AddEnigmaView: View {
                     .frame(width: (200.0 * 2), height: (100.0 * 2))
             }
             Form {
-                
+                Section {
+                    TextField("Name", text: $enigmaName)
+                } header: {
+                    Text("Name")
+                }
+                Section {
+                    TextEditor(text: $enigmaRiddle)
+                        .frame(height: textEditorHeight + 12)
+                } header: {
+                    Text("Riddle")
+                }
+                Section {
+                    TextField("Hint", text: $enigmaHint)
+                    TextField("Solution", text: $enigmaSolution)
+                } header: {
+                    Text("Hint and solution")
+                }
             }
             // navigation toolbar
             .toolbar {

@@ -41,7 +41,7 @@ struct AddEnigmaView: View {
             }
             Form {
                 Section {
-                    TextField("Name", text: $enigmaName)
+                    TextField("", text: $enigmaName)
                 } header: {
                     Text("Name")
                 }

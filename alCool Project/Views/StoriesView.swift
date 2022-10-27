@@ -46,7 +46,7 @@ struct StoriesView: View {
                         } label: {
                             Image(systemName: "questionmark")
                                 .foregroundColor(accentColor)
-                                .font(.caption) //Piccolo abbastanza?
+                                .font(.caption) //Piccolo abbastanza? Forse, bisogna vedere come gestire le dimensioni di entrambi i pulsati affinchè siano abbastanza grandi ed abbiano una touch hitbox di almeno 44px come suggerito dalla AHIG
                         }
                         Spacer()
                         Button {

@@ -13,44 +13,59 @@ struct AddStoryView: View {
     let accentColor = Color(.systemPurple)
     @State private var storyName = ""
     @State private var tokens = 0 // Forse @State non è il property wrapper adatto se tokens deve essere disponibile in altre views
+    @State private var showingAddEnigmaModal = false
+    var maxTokens = 5// questo va cambiato in base al numero di enigmi nella story
     
     var body: some View {
         NavigationStack {
-            Spacer(minLength: 30.0)
-            Form {
-                TextField("Name", text: $storyName)
-                Stepper(value: $tokens, in: 0...5, step: 1) {
-                    Text("Tokens: \(tokens)")
+                Form {
+                    Section {
+                        TextField("Name", text: $storyName)
+                        Stepper("Tokens: \(tokens)", value: $tokens, in: 0...maxTokens)
+                    }
+                    Section(
+                        footer:
+                            Text("A Story without an Enigma? That's illegal!")
+                    ) {
+                        Button("Add Enigma") {
+                            showingAddEnigmaModal.toggle()
+                        }
+                        .sheet(
+                            isPresented: $showingAddEnigmaModal
+                        ) {
+                            AddEnigmaView()
+                        }
+                    }
                 }
             }
             // navigation toolbar
-            .toolbar {
-                ToolbarItem(
-                    placement: .navigationBarTrailing
-                ){
-                    Button {
-                        print("Done")
-                    } label: {
-                        Text("Done")
-                            .bold()
-                            .foregroundColor(accentColor)
+                .toolbar {
+                    ToolbarItem(
+                        placement: .navigationBarTrailing
+                    ){
+                        Button {
+                            print("Done")
+                        } label: {
+                            Text("Done")
+                                .bold()
+                                .foregroundColor(accentColor)
+                        }
+                    }
+                    ToolbarItem(
+                        placement: .navigationBarLeading
+                    ){
+                        Button {
+                            dismiss()
+                        } label: {
+                            Text("Cancel")
+                                .foregroundColor(accentColor)
+                        }
                     }
                 }
-                ToolbarItem(
-                    placement: .navigationBarLeading
-                ){
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("Cancel")
-                            .foregroundColor(accentColor)
-                    }
-                }
-            }
-            .navigationBarTitle(
-                "Add Story",
-                displayMode: .inline
-            )
+                .navigationBarTitle(
+                    "Add Story",
+                    displayMode: .inline
+                )
         }
     }
 }

@@ -18,54 +18,54 @@ struct AddStoryView: View {
     
     var body: some View {
         NavigationStack {
-                Form {
-                    Section {
-                        TextField("Name", text: $storyName)
-                        Stepper("Tokens: \(tokens)", value: $tokens, in: 0...maxTokens)
+            Form {
+                Section {
+                    TextField("Name", text: $storyName)
+                    Stepper("Tokens: \(tokens)", value: $tokens, in: 0...maxTokens)
+                }
+                Section(
+                    footer:
+                        Text("A Story without an Enigma? That's illegal!")
+                ) {
+                    Button("Add Enigma") {
+                        showingAddEnigmaModal.toggle()
                     }
-                    Section(
-                        footer:
-                            Text("A Story without an Enigma? That's illegal!")
+                    .sheet(
+                        isPresented: $showingAddEnigmaModal
                     ) {
-                        Button("Add Enigma") {
-                            showingAddEnigmaModal.toggle()
-                        }
-                        .sheet(
-                            isPresented: $showingAddEnigmaModal
-                        ) {
-                            AddEnigmaView()
-                        }
+                        AddEnigmaView()
                     }
                 }
             }
+            
             // navigation toolbar
-                .toolbar {
-                    ToolbarItem(
-                        placement: .navigationBarTrailing
-                    ){
-                        Button {
-                            print("Done")
-                        } label: {
-                            Text("Done")
-                                .bold()
-                                .foregroundColor(accentColor)
-                        }
-                    }
-                    ToolbarItem(
-                        placement: .navigationBarLeading
-                    ){
-                        Button {
-                            dismiss()
-                        } label: {
-                            Text("Cancel")
-                                .foregroundColor(accentColor)
-                        }
+            .toolbar {
+                ToolbarItem(
+                    placement: .navigationBarTrailing
+                ){
+                    Button {
+                        print("Done")
+                    } label: {
+                        Text("Done")
+                            .bold()
+                            .foregroundColor(accentColor)
                     }
                 }
-                .navigationBarTitle(
-                    "Add Story",
-                    displayMode: .inline
-                )
+                ToolbarItem(
+                    placement: .navigationBarLeading
+                ){
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
+                            .foregroundColor(accentColor)
+                    }
+                }
+            }
+            .navigationBarTitle(
+                "Add Story",
+                displayMode: .inline
+            )
         }
     }
 }

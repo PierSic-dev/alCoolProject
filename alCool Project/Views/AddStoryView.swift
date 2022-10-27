@@ -6,22 +6,22 @@
 //
 
 import SwiftUI
-// Commento di prova: Arturo. Test delle funzioni commit e push
 
 struct AddStoryView: View {
     @Environment(\.dismiss) var dismiss
     
     let accentColor = Color(.systemPurple)
     @State private var storyName = ""
-    @State private var tokens = 0
+    @State private var tokens = 0 // Forse @State non è il property wrapper adatto se tokens deve essere disponibile in altre views
     
     var body: some View {
         NavigationStack {
             Spacer(minLength: 30.0)
             Form {
                 TextField("Name", text: $storyName)
-                //Stepper(value: $tokens, in: 0...5, step: 1, label: <#T##() -> _#>)
-                // Test
+                Stepper(value: $tokens, in: 0...5, step: 1) {
+                    Text("Tokens: \(tokens)")
+                }
             }
             // navigation toolbar
             .toolbar {

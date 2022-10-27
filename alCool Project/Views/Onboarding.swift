@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Onboarding: View {
     @State var ShouldShowOnboarding: Bool = true
+    @State var SkipButton: Bool = true
     var body: some View {
         NavigationView {
             VStack {
@@ -17,7 +18,7 @@ struct Onboarding: View {
             .navigationTitle("Welcome!")
         }
         .fullScreenCover(isPresented: $ShouldShowOnboarding, content: {
-            OnboardingView(ShouldShowOnboarding: $ShouldShowOnboarding)
+            OnboardingView(ShouldShowOnboarding: $ShouldShowOnboarding, SkipButton: $SkipButton)
         } )
     }
 }
@@ -25,35 +26,44 @@ struct Onboarding: View {
 // Onboarding
 struct OnboardingView: View {
     @Binding var ShouldShowOnboarding: Bool
+    @Binding var SkipButton: Bool
     var body: some View {
         TabView {
             PageView (title: "Push notification",
                       subtitle: "Enable notification",
                       imagename: "bell",
                       showDismissButton: false,
+                      showSkipButton: true,
                       Currentpage: 0,
-                      ShouldShowOnboarding: $ShouldShowOnboarding)
+                      ShouldShowOnboarding: $ShouldShowOnboarding,
+                      SkipButton: $SkipButton)
             
             PageView (title: "Bookmarks",
                       subtitle: "Save your favourite",
                       imagename: "bookmark",
                       showDismissButton: false,
+                      showSkipButton: true,
                       Currentpage: 1,
-                      ShouldShowOnboarding: $ShouldShowOnboarding)
+                      ShouldShowOnboarding: $ShouldShowOnboarding,
+                      SkipButton: $SkipButton)
             
             PageView (title: "Flights",
                       subtitle: "Book flights",
                       imagename: "airplane",
                       showDismissButton: false,
+                      showSkipButton: true,
                       Currentpage: 2,
-                      ShouldShowOnboarding: $ShouldShowOnboarding)
+                      ShouldShowOnboarding: $ShouldShowOnboarding,
+                      SkipButton: $SkipButton)
             
             PageView (title: "Home",
                       subtitle: "Return Home",
                       imagename: "house",
                       showDismissButton: true,
+                      showSkipButton: false,
                       Currentpage: 3,
-                      ShouldShowOnboarding: $ShouldShowOnboarding)
+                      ShouldShowOnboarding: $ShouldShowOnboarding,
+                      SkipButton: $SkipButton)
             
         }
         .tabViewStyle(PageTabViewStyle())
@@ -98,6 +108,11 @@ struct PageView: View {
                     SkipButton.toggle()
                 }, label: {
                     Text("Skip")
+                        .bold()
+                        .foregroundColor(Color.white)
+                        .frame(width: 200, height: 50)
+                        .background(Color.green)
+                        .cornerRadius(6)
                 })
             }
             

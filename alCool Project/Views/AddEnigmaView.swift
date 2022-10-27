@@ -9,8 +9,6 @@ import SwiftUI
 import PhotosUI
 
 struct AddEnigmaView: View {
-    let accentColor = Color(.systemPurple)
-    
     @Environment(\.dismiss) var dismiss
     
     @State var selectedPhoto: [PhotosPickerItem] = []
@@ -34,10 +32,14 @@ struct AddEnigmaView: View {
                 maxSelectionCount: 1,
                 matching: .images
             ) {
-                RoundedRectangle(cornerRadius: 10)
-                    .padding(20)
-                    .foregroundColor(accentColor)
-                    .frame(width: (200.0 * 2), height: (100.0 * 2))
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .padding(20)
+                        .foregroundColor(Color(UIColor.secondarySystemBackground))
+                        .frame(width: (250), height: (150))
+                    Image(systemName: "camera")
+                        .foregroundColor(.accentColor)
+                }
             }
             Form {
                 Section {
@@ -68,7 +70,7 @@ struct AddEnigmaView: View {
                     } label: {
                         Text("Done")
                             .bold()
-                            .foregroundColor(accentColor)
+                            .foregroundColor(.accentColor)
                     }
                 }
                 ToolbarItem(
@@ -78,7 +80,7 @@ struct AddEnigmaView: View {
                         dismiss()
                     } label: {
                         Text("Cancel")
-                            .foregroundColor(accentColor)
+                            .foregroundColor(.accentColor)
                     }
                 }
             }

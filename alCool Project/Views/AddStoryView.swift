@@ -10,7 +10,6 @@ import SwiftUI
 struct AddStoryView: View {
     @Environment(\.dismiss) var dismiss
     
-    let accentColor = Color(.systemPurple)
     @State private var storyName = ""
     @State private var tokens = 0 // Forse @State non è il property wrapper adatto se tokens deve essere disponibile in altre views
     @State private var showingAddEnigmaModal = false
@@ -19,23 +18,19 @@ struct AddStoryView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
-                    TextField("Name", text: $storyName)
-                    Stepper("Tokens: \(tokens)", value: $tokens, in: 0...maxTokens)
-                }
-                Section(
-                    footer:
-                        Text("A Story without an Enigma? That's illegal!")
-                ) {
-                    Button("Add Enigma") {
-                        showingAddEnigmaModal.toggle()
-                    }
-                    .sheet(
-                        isPresented: $showingAddEnigmaModal
-                    ) {
-                        AddEnigmaView()
-                    }
-                }
+                TextField("Name", text: $storyName)
+                Stepper("Tokens: \(tokens)", value: $tokens, in: 0...maxTokens)
+            }
+            Button {
+                showingAddEnigmaModal.toggle()
+            } label: {
+                Label("Add Enigma", systemImage: "plus")
+            }
+            .foregroundColor(.purple)
+            .sheet(
+                isPresented: $showingAddEnigmaModal
+            ) {
+                AddEnigmaView()
             }
             
             // navigation toolbar
@@ -48,7 +43,7 @@ struct AddStoryView: View {
                     } label: {
                         Text("Done")
                             .bold()
-                            .foregroundColor(accentColor)
+                            .foregroundColor(.accentColor)
                     }
                 }
                 ToolbarItem(
@@ -58,7 +53,7 @@ struct AddStoryView: View {
                         dismiss()
                     } label: {
                         Text("Cancel")
-                            .foregroundColor(accentColor)
+                            .foregroundColor(.accentColor)
                     }
                 }
             }

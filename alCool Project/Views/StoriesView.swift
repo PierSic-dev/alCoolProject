@@ -29,7 +29,7 @@ struct StoriesView: View {
                             showingAddStoryModal.toggle()
                         } label: {
                             Image(systemName: "plus")
-                                .foregroundColor(accentColor)
+                                .foregroundColor(.accentColor)
                         }
                         .sheet(
                             isPresented: $showingAddStoryModal
@@ -45,7 +45,7 @@ struct StoriesView: View {
                             print("Info")
                         } label: {
                             Image(systemName: "questionmark")
-                                .foregroundColor(accentColor)
+                                .foregroundColor(.accentColor)
                                 .font(.caption) //Piccolo abbastanza? Forse, bisogna vedere come gestire le dimensioni di entrambi i pulsati affinchè siano abbastanza grandi ed abbiano una touch hitbox di almeno 44px come suggerito dalla AHIG
                         }
                         Spacer()
@@ -53,7 +53,7 @@ struct StoriesView: View {
                             print("Join")
                         } label: {
                             Text("Join")
-                                .foregroundColor(accentColor)
+                                .foregroundColor(.accentColor)
                         }
                     }
                 }

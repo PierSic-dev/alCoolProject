@@ -29,44 +29,35 @@ struct OnboardingView: View {
     @Binding var SkipButton: Bool
     var body: some View {
         TabView {
-            PageView (title: "Push notification",
-                      subtitle: "Enable notification",
+            PageView (title: "Welcome!",
+                      subtitle: "It’s time to get creative and have fun together!",
                       imagename: "bell",
                       showDismissButton: false,
                       showSkipButton: true,
-                      Currentpage: 0,
                       ShouldShowOnboarding: $ShouldShowOnboarding,
                       SkipButton: $SkipButton)
+                      
             
-            PageView (title: "Bookmarks",
-                      subtitle: "Save your favourite",
+            PageView (title: "Create your Story.                       Add photos, riddles and hints",
+                      subtitle: "Unleash your fantasy!",
                       imagename: "bookmark",
                       showDismissButton: false,
                       showSkipButton: true,
-                      Currentpage: 1,
                       ShouldShowOnboarding: $ShouldShowOnboarding,
                       SkipButton: $SkipButton)
-            
-            PageView (title: "Flights",
-                      subtitle: "Book flights",
-                      imagename: "airplane",
-                      showDismissButton: false,
-                      showSkipButton: true,
-                      Currentpage: 2,
-                      ShouldShowOnboarding: $ShouldShowOnboarding,
-                      SkipButton: $SkipButton)
-            
-            PageView (title: "Home",
-                      subtitle: "Return Home",
+                     
+         
+            PageView (title: "Get immersed in someone else’s story",
+                      subtitle: "Solve a sequence of enigmas together with your peers.                         Ready to play?",
                       imagename: "house",
                       showDismissButton: true,
                       showSkipButton: false,
-                      Currentpage: 3,
-                      ShouldShowOnboarding: $ShouldShowOnboarding,
+                     ShouldShowOnboarding: $ShouldShowOnboarding,
                       SkipButton: $SkipButton)
             
         }
         .tabViewStyle(PageTabViewStyle())
+        .background(Color.black)
     }
 }
 
@@ -77,7 +68,7 @@ struct PageView: View {
     let showDismissButton: Bool
     let showSkipButton: Bool
 
-    @State var Currentpage: Int
+
     @Binding var ShouldShowOnboarding: Bool
     @Binding var SkipButton: Bool
     var body: some View {
@@ -86,22 +77,23 @@ struct PageView: View {
                 .font(.system(size: 32))
                 .fontWeight(.medium)
                 .padding()
+                .foregroundColor(Color(UIColor.secondarySystemBackground))
 
             Image(systemName: imagename)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 150.0, height: 150.0)
                 .padding()
-            
+                .foregroundColor(Color(UIColor.secondarySystemBackground))
            
             
             Text(subtitle)
                 .font(.system(size: 24))
-                .foregroundColor(Color(.secondaryLabel))
+                .foregroundColor(Color(UIColor.secondarySystemBackground))
                 .padding()
             
         
-            pageControl(current: Currentpage)
+         
             
             if showSkipButton {
                 Button(action: {
@@ -111,7 +103,7 @@ struct PageView: View {
                         .bold()
                         .foregroundColor(Color.white)
                         .frame(width: 200, height: 50)
-                        .background(Color.green)
+                        .background(Color("AccentColor"))
                         .cornerRadius(6)
                 })
             }
@@ -129,8 +121,6 @@ struct PageView: View {
                 })
             }
         }
-    
-
     }
 }
 struct Onboarding_Previews: PreviewProvider {

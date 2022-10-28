@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct Onboarding: View {
-    @State var ShouldShowOnboarding: Bool = true
-    @State var SkipButton: Bool = true
+    @AppStorage("ShouldShowOnboarding") var ShouldShowOnboarding: Bool = true
+    @AppStorage("SkipButton") var SkipButton: Bool = true
     var body: some View {
         NavigationView {
             VStack {
@@ -38,7 +38,7 @@ struct OnboardingView: View {
                       SkipButton: $SkipButton)
                       
             
-            PageView (title: "Create your Story.                       Add photos, riddles and hints",
+            PageView (title: "Create your Story.\nAdd photos, riddles and hints",
                       subtitle: "Unleash your fantasy!",
                       imagename: "bookmark",
                       showDismissButton: false,
@@ -48,7 +48,7 @@ struct OnboardingView: View {
                      
          
             PageView (title: "Get immersed in someone else’s story",
-                      subtitle: "Solve a sequence of enigmas together with your peers.                         Ready to play?",
+                      subtitle: "Solve a sequence of enigmas together with your peers.\nReady to play?",
                       imagename: "house",
                       showDismissButton: true,
                       showSkipButton: false,
@@ -77,20 +77,20 @@ struct PageView: View {
                 .font(.system(size: 32))
                 .fontWeight(.medium)
                 .padding()
-                .foregroundColor(Color(UIColor.secondarySystemBackground))
+                //.foregroundColor(Color.primary)
 
             Image(systemName: imagename)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 150, height: 150)
                 .padding()
-                .foregroundColor(Color(UIColor.secondarySystemBackground))
+                //.foregroundColor(Color.primary)
            
             
             Text(subtitle)
                 .font(.system(size: 24))
-                .foregroundColor(Color(UIColor.secondarySystemBackground))
-                .padding()
+                .foregroundColor(Color.primary)
+                //.padding()
             
         
          

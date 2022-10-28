@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct alCool_ProjectApp: App {
+    @State var ShouldShowOnboarding: Bool = true
+    @State var SkipButton: Bool = true
+    
     var body: some Scene {
         WindowGroup {
             StoriesView()

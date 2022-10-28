@@ -9,6 +9,9 @@ import SwiftUI
 
 struct StoriesView: View {
     
+    @AppStorage("ShouldShowOnboarding") var ShouldShowOnboarding: Bool = true
+    @AppStorage("SkipButton") var SkipButton: Bool = true
+    
     @State private var showingAddStoryModal = false
     
     var body: some View {
@@ -64,6 +67,9 @@ struct StoriesView: View {
                 .navigationBarTitle("Stories")
             }
         }
+        .fullScreenCover(isPresented: $ShouldShowOnboarding, content: {
+            OnboardingView(ShouldShowOnboarding: $ShouldShowOnboarding, SkipButton: $SkipButton)
+        } )
     }
 }
 

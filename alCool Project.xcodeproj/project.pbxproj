@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		699A67DD290A9932004E2CFD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699A67DC290A9932004E2CFD /* Onboarding.swift */; };
 		889EBCDD29048B1F00D6750A /* alCool_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889EBCDC29048B1F00D6750A /* alCool_ProjectApp.swift */; };
 		889EBCDF29048B1F00D6750A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889EBCDE29048B1F00D6750A /* ContentView.swift */; };
 		889EBCE129048B2100D6750A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889EBCE029048B2100D6750A /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		699A67DC290A9932004E2CFD /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		889EBCD929048B1F00D6750A /* alCool Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "alCool Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		889EBCDC29048B1F00D6750A /* alCool_ProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alCool_ProjectApp.swift; sourceTree = "<group>"; };
 		889EBCDE29048B1F00D6750A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				889EBCEC290490BA00D6750A /* StoriesView.swift */,
 				889EBCF329069B7C00D6750A /* AddStoryView.swift */,
 				889EBCF12905919500D6750A /* AddEnigmaView.swift */,
+				699A67DC290A9932004E2CFD /* Onboarding.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				699A67DD290A9932004E2CFD /* Onboarding.swift in Sources */,
 				889EBCDF29048B1F00D6750A /* ContentView.swift in Sources */,
 				889EBCF429069B7C00D6750A /* AddStoryView.swift in Sources */,
 				889EBCDD29048B1F00D6750A /* alCool_ProjectApp.swift in Sources */,

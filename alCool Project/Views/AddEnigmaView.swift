@@ -22,33 +22,71 @@ struct AddEnigmaView: View {
     
     var body: some View {
         NavigationStack {
-            // Photo Picker (chiedere a qualche mentor come funziona e cosa fa sta cosa)
             PhotosPicker(
                 selection: $selectedPhoto,
                 maxSelectionCount: 1,
                 matching: .images
             ) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .padding(20)
-                        .foregroundColor(Color(UIColor.secondarySystemBackground))
-                        .frame(width: (250), height: (150))
+                    
                     if selectedPhoto.isEmpty {
+                        RoundedRectangle(cornerRadius: 10)
+                            .padding(20)
+                            .foregroundColor(Color(UIColor.secondarySystemBackground))
+                            .frame(width: (300), height: (200))
                         Image(systemName: "camera")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 45, height: 45, alignment: .center)
                             .foregroundColor(.accentColor)
                     } else {
-                        // chiedere chiarimenti su come mettere l'immagine nel rettangolo
                         if let data = data, let image = UIImage(data: data) {
                             Image(uiImage: image)
-//                                .resizable()
-//                                .scaledToFit()
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: (300), height: (200))
+                                .cornerRadius(10)
+                                .padding(20)
                         }
+                    }
+                        
+                }
+            }
+            .onChange(of: selectedPhoto) { newValue in
+                guard let item = selectedPhoto.first else {
+                    return
+                }
+                item.loadTransferable(type: Data.self) { result in
+                    switch result {
+                    case .success(let data):
+                        if let data = data {
+                            self.data = data
+                        } else {
+                            print("Data is nil")
+                        }
+                    case .failure(let failure):
+                        print(failure)
+                        fatalError()
                     }
                 }
             }
+            /*
+             .onChange(of: selectedItem) { newValue in
+                             guard let item = selectedItem.first else {
+                                 return
+                             }
+                             item.loadTransferable(type: Data.self) { result in
+                                 switch result {
+                                 case .success(let data):
+                                     if let data = data {
+                                         self.data = data
+                                     }
+                                 case .failure(let failure):
+                                     print("Error: \(failure.localizedDescription)")
+                                 }
+                             }
+                         }
+             */
             Form {
                 Section {
                     TextField("", text: $enigmaName)

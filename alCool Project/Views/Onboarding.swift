@@ -120,6 +120,7 @@ struct PageView: View {
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
         Onboarding()
+            .preferredColorScheme(.dark)
     }
 }
 

@@ -23,10 +23,6 @@ struct AddEnigmaView: View {
     var body: some View {
         NavigationStack {
             // Photo Picker (chiedere a qualche mentor come funziona e cosa fa sta cosa)
-            if let data = data, let image = UIImage(data: data) {
-                Image(uiImage: image)
-                    .resizable()
-            }
             PhotosPicker(
                 selection: $selectedPhoto,
                 maxSelectionCount: 1,
@@ -47,8 +43,8 @@ struct AddEnigmaView: View {
                         // chiedere chiarimenti su come mettere l'immagine nel rettangolo
                         if let data = data, let image = UIImage(data: data) {
                             Image(uiImage: image)
-                                .resizable()
-                                .scaledToFit()
+//                                .resizable()
+//                                .scaledToFit()
                         }
                     }
                 }

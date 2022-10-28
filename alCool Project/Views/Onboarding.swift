@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct Onboarding: View {
-    @AppStorage("ShouldShowOnboarding") var ShouldShowOnboarding: Bool = true
-    @AppStorage("SkipButton") var SkipButton: Bool = true
+    @State var ShouldShowOnboarding: Bool = true
+    @State var SkipButton: Bool = true
     var body: some View {
         NavigationView {
             VStack {
@@ -77,23 +77,17 @@ struct PageView: View {
                 .font(.system(size: 32))
                 .fontWeight(.medium)
                 .padding()
-                //.foregroundColor(Color.primary)
 
             Image(systemName: imagename)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 150, height: 150)
                 .padding()
-                //.foregroundColor(Color.primary)
            
             
             Text(subtitle)
                 .font(.system(size: 24))
-                .foregroundColor(Color.primary)
-                //.padding()
-            
-        
-         
+                .padding()
             
             if showSkipButton {
                 Button(action: {

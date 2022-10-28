@@ -46,7 +46,9 @@ struct StoriesView: View {
                 .toolbar {
                     ToolbarItemGroup(placement: .bottomBar) {
                         Button {
-                            print("Info")
+                            ShouldShowOnboarding.toggle()
+                            SkipButton.toggle()
+                            OnboardingView(ShouldShowOnboarding: $ShouldShowOnboarding, SkipButton: $SkipButton)
                         } label: {
                             Image(systemName: "questionmark")
                                 .foregroundColor(.accentColor)

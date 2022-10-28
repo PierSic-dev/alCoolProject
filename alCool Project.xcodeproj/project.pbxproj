@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		699A67DD290A9932004E2CFD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699A67DC290A9932004E2CFD /* Onboarding.swift */; };
+		699A67E1290BD9FA004E2CFD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699A67E0290BD9FA004E2CFD /* DataModel.swift */; };
 		889EBCDD29048B1F00D6750A /* alCool_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889EBCDC29048B1F00D6750A /* alCool_ProjectApp.swift */; };
 		889EBCDF29048B1F00D6750A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889EBCDE29048B1F00D6750A /* ContentView.swift */; };
 		889EBCE129048B2100D6750A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889EBCE029048B2100D6750A /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		699A67DC290A9932004E2CFD /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		699A67E0290BD9FA004E2CFD /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		889EBCD929048B1F00D6750A /* alCool Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "alCool Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		889EBCDC29048B1F00D6750A /* alCool_ProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alCool_ProjectApp.swift; sourceTree = "<group>"; };
 		889EBCDE29048B1F00D6750A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		699A67DF290BD9DA004E2CFD /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				699A67E0290BD9FA004E2CFD /* DataModel.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		889EBCD029048B1F00D6750A = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +72,7 @@
 				889EBCDC29048B1F00D6750A /* alCool_ProjectApp.swift */,
 				889EBCEE2904CDCF00D6750A /* Views */,
 				889EBCE029048B2100D6750A /* Assets.xcassets */,
+				699A67DF290BD9DA004E2CFD /* Data */,
 				889EBCE229048B2100D6750A /* Preview Content */,
 			);
 			path = "alCool Project";
@@ -157,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				699A67E1290BD9FA004E2CFD /* DataModel.swift in Sources */,
 				699A67DD290A9932004E2CFD /* Onboarding.swift in Sources */,
 				889EBCDF29048B1F00D6750A /* ContentView.swift in Sources */,
 				889EBCF429069B7C00D6750A /* AddStoryView.swift in Sources */,

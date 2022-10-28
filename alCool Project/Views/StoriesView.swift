@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StoriesView: View {
-    let accentColor = Color(.systemPurple)
     
     @State private var showingAddStoryModal = false
     
@@ -31,6 +30,8 @@ struct StoriesView: View {
                             Image(systemName: "plus")
                                 .foregroundColor(.accentColor)
                         }
+                        .scaledToFit()
+                        .frame(width: 45, height: 45, alignment: .center)
                         .sheet(
                             isPresented: $showingAddStoryModal
                         ){
@@ -46,8 +47,9 @@ struct StoriesView: View {
                         } label: {
                             Image(systemName: "questionmark")
                                 .foregroundColor(.accentColor)
-                                .font(.caption) //Piccolo abbastanza? Forse, bisogna vedere come gestire le dimensioni di entrambi i pulsati affinchè siano abbastanza grandi ed abbiano una touch hitbox di almeno 44px come suggerito dalla AHIG
                         }
+                        .scaledToFit()
+                        .frame(width: 45, height: 45, alignment: .center)
                         Spacer()
                         Button {
                             print("Join")
@@ -55,6 +57,8 @@ struct StoriesView: View {
                             Text("Join")
                                 .foregroundColor(.accentColor)
                         }
+                        .scaledToFit()
+                        .frame(width: 45, height: 45, alignment: .center)
                     }
                 }
                 .navigationBarTitle("Stories")
@@ -65,6 +69,6 @@ struct StoriesView: View {
 
 struct StoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        StoriesView()
+        StoriesView().colorScheme(.dark)
     }
 }

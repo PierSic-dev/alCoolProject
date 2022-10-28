@@ -82,7 +82,7 @@ struct PageView: View {
             Image(systemName: imagename)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 150.0, height: 150.0)
+                .frame(width: 150, height: 150)
                 .padding()
                 .foregroundColor(Color(UIColor.secondarySystemBackground))
            

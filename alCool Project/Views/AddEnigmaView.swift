@@ -17,12 +17,12 @@ struct AddEnigmaView: View {
     // Enigma text data
     @State private var enigmaName = ""
     @State private var enigmaRiddle = ""
-    @State private var textEditorHeight: CGFloat = 100
     @State private var enigmaHint = ""
     @State private var enigmaSolution = ""
     
     var body: some View {
         NavigationStack {
+            // Photo Picker (chiedere a qualche mentor come funziona e cosa fa sta cosa)
             if let data = data, let image = UIImage(data: data) {
                 Image(uiImage: image)
                     .resizable()
@@ -37,8 +37,20 @@ struct AddEnigmaView: View {
                         .padding(20)
                         .foregroundColor(Color(UIColor.secondarySystemBackground))
                         .frame(width: (250), height: (150))
-                    Image(systemName: "camera")
-                        .foregroundColor(.accentColor)
+                    if selectedPhoto.isEmpty {
+                        Image(systemName: "camera")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 45, height: 45, alignment: .center)
+                            .foregroundColor(.accentColor)
+                    } else {
+                        // chiedere chiarimenti su come mettere l'immagine nel rettangolo
+                        if let data = data, let image = UIImage(data: data) {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFit()
+                        }
+                    }
                 }
             }
             Form {
@@ -49,15 +61,19 @@ struct AddEnigmaView: View {
                 }
                 Section {
                     TextEditor(text: $enigmaRiddle)
-                        .frame(height: textEditorHeight + 12)
+                        .frame(height: 100)
                 } header: {
                     Text("Riddle")
                 }
                 Section {
-                    TextField("Hint", text: $enigmaHint)
-                    TextField("Solution", text: $enigmaSolution)
+                    TextField("", text: $enigmaHint)
                 } header: {
-                    Text("Hint and solution")
+                    Text("Hint")
+                }
+                Section {
+                    TextField("", text: $enigmaSolution)
+                } header: {
+                    Text("Solution")
                 }
             }
             // navigation toolbar
@@ -94,6 +110,6 @@ struct AddEnigmaView: View {
 
 struct AddEnigmaView_Previews: PreviewProvider {
     static var previews: some View {
-        AddEnigmaView()
+        AddEnigmaView().colorScheme(.dark)
     }
 }

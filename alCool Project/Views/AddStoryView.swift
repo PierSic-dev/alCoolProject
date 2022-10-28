@@ -18,21 +18,30 @@ struct AddStoryView: View {
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Name", text: $storyName)
-                Stepper("Tokens: \(tokens)", value: $tokens, in: 0...maxTokens)
+                Section {
+                    TextField("", text: $storyName)
+                } header: {
+                    Text("Name")
+                }
+                Section {
+                    Stepper("\(tokens)", value: $tokens, in: 0...maxTokens)
+                } header: {
+                    Text("Tokens")
+                }
+                Section {
+                    Button {
+                        showingAddEnigmaModal.toggle()
+                    } label: {
+                        Text("Add Enigma")
+                    }
+                    .foregroundColor(.purple)
+                }
             }
-            Button {
-                showingAddEnigmaModal.toggle()
-            } label: {
-                Label("Add Enigma", systemImage: "plus")
-            }
-            .foregroundColor(.purple)
             .sheet(
                 isPresented: $showingAddEnigmaModal
             ) {
                 AddEnigmaView()
             }
-            
             // navigation toolbar
             .toolbar {
                 ToolbarItem(
@@ -67,6 +76,6 @@ struct AddStoryView: View {
 
 struct AddStoryView_Previews: PreviewProvider {
     static var previews: some View {
-        AddStoryView()
+        AddStoryView().colorScheme(.dark)
     }
 }

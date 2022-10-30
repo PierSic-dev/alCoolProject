@@ -30,16 +30,18 @@ struct AddStoryView: View {
                     Text("Tokens")
                 }
                 Section {
-                    ForEach(story.enigmas) { enigma in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(enigma.name)
-                                    .font(.headline)
-                                Text(enigma.solution)
+                    List {
+                        ForEach(story.enigmas) { enigma in
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(enigma.name)
+                                        .font(.headline)
+                                    Text(enigma.solution)
+                                }
                             }
                         }
+                        .onDelete(perform: removeItems)
                     }
-                    .onDelete(perform: removeItems)
                 }
                 Section {
                     Button {

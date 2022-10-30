@@ -9,10 +9,10 @@ import SwiftUI
 
 struct AddStoryView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject var story = Story(name: "", tokens: 0)
     
-    @State private var storyName = ""
-    @State private var tokens = 0
+    @StateObject var story = Story(name: "", tokens: 0)
+    @ObservedObject var stories: Stories
+    
     @State private var showingAddEnigmaModal = false
     var maxTokens = 5
     
@@ -20,12 +20,12 @@ struct AddStoryView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("", text: $storyName)
+                    TextField("", text: $story.name)
                 } header: {
                     Text("Name")
                 }
                 Section {
-                    Stepper("\(tokens)", value: $tokens, in: 0...maxTokens)
+                    Stepper("\(story.tokens)", value: $story.tokens, in: 0...maxTokens)
                 } header: {
                     Text("Tokens")
                 }
@@ -63,7 +63,9 @@ struct AddStoryView: View {
                     placement: .navigationBarTrailing
                 ){
                     Button {
-                        print("Done")
+                        stories.storiesList.append(story)
+                        
+                        dismiss()
                     } label: {
                         Text("Done")
                             .bold()
@@ -95,6 +97,6 @@ struct AddStoryView: View {
 
 struct AddStoryView_Previews: PreviewProvider {
     static var previews: some View {
-        AddStoryView().colorScheme(.dark)
+        AddStoryView(stories: Stories()).colorScheme(.dark)
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StoriesView: View {
+    @StateObject var stories = Stories()
     
     @AppStorage("ShouldShowOnboarding") var ShouldShowOnboarding: Bool = true
     @AppStorage("SkipButton") var SkipButton: Bool = true
@@ -17,11 +18,24 @@ struct StoriesView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                List {
+                    ForEach(stories.storiesList, id: \.name) { story in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(story.name)
+                                    .font(.headline)
+                                Text(story.tokens, format: .number)
+                            }
+                        }
+                    }
+                }
+                /* Temporaneamente commentato - Da mostrare solo se stories.storiesList è vuoto
                 VStack {
                     Text("There are no Stories...\nYet!")
                         .multilineTextAlignment(.center)
                         .foregroundColor(.secondary)
                 }
+                */
                 // navigation toolbar
                 .toolbar {
                     ToolbarItem(
@@ -38,7 +52,7 @@ struct StoriesView: View {
                         .sheet(
                             isPresented: $showingAddStoryModal
                         ){
-                            AddStoryView()
+                            AddStoryView(stories: stories)
                         }
                     }
                 }

@@ -38,3 +38,13 @@ class Story: ObservableObject {
         enigmas = []
     }
 }
+
+class Stories: ObservableObject {
+    @Published var storiesList = [Story]() /*{
+        didSet {
+            if let encoded = try? JSONEncoder().encode(storiesList) {
+                UserDefaults.standard.set(encoded, forKey: "Stories")
+            }
+        }
+    } Questo funziona solo se Story è conforme a Codable, cosa che richiede ulteriori passaggi */
+}

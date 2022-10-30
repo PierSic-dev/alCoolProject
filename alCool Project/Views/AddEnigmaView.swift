@@ -10,15 +10,16 @@ import PhotosUI
 
 struct AddEnigmaView: View {
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var story: Story
     
-    @State var selectedPhoto: [PhotosPickerItem] = []
-    @State var data: Data?
+    @State private var selectedPhoto: [PhotosPickerItem] = []
+    @State private var data: Data?
     
     // Enigma text data
-    @State private var enigmaName = ""
-    @State private var enigmaRiddle = ""
-    @State private var enigmaHint = ""
-    @State private var enigmaSolution = ""
+    @State private var name = ""
+    @State private var riddle = ""
+    @State private var hint = ""
+    @State private var solution = ""
     
     var body: some View {
         NavigationStack {
@@ -89,23 +90,23 @@ struct AddEnigmaView: View {
              */
             Form {
                 Section {
-                    TextField("", text: $enigmaName)
+                    TextField("", text: $name)
                 } header: {
                     Text("Name")
                 }
                 Section {
-                    TextEditor(text: $enigmaRiddle)
+                    TextEditor(text: $riddle)
                         .frame(height: 100)
                 } header: {
                     Text("Riddle")
                 }
                 Section {
-                    TextField("", text: $enigmaHint)
+                    TextField("", text: $hint)
                 } header: {
                     Text("Hint")
                 }
                 Section {
-                    TextField("", text: $enigmaSolution)
+                    TextField("", text: $solution)
                 } header: {
                     Text("Solution")
                 }
@@ -116,7 +117,10 @@ struct AddEnigmaView: View {
                     placement: .navigationBarTrailing
                 ){
                     Button {
-                        print("Done")
+                        let enigma = Enigma(name: name, riddle: riddle, hint: hint, solution: solution)
+                        story.enigmas.append(enigma)
+                        
+                        dismiss()
                     } label: {
                         Text("Done")
                             .bold()
@@ -144,6 +148,6 @@ struct AddEnigmaView: View {
 
 struct AddEnigmaView_Previews: PreviewProvider {
     static var previews: some View {
-        AddEnigmaView().colorScheme(.dark)
+        AddEnigmaView(story: Story(name: "", tokens: 0)).colorScheme(.dark)
     }
 }

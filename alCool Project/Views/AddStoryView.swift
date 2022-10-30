@@ -9,11 +9,12 @@ import SwiftUI
 
 struct AddStoryView: View {
     @Environment(\.dismiss) var dismiss
+    @StateObject var story = Story(name: "", tokens: 0)
     
     @State private var storyName = ""
-    @State private var tokens = 0 // Forse @State non è il property wrapper adatto se tokens deve essere disponibile in altre views
+    @State private var tokens = 0
     @State private var showingAddEnigmaModal = false
-    var maxTokens = 5// questo va cambiato in base al numero di enigmi nella story
+    var maxTokens = 5
     
     var body: some View {
         NavigationStack {
@@ -29,6 +30,18 @@ struct AddStoryView: View {
                     Text("Tokens")
                 }
                 Section {
+                    ForEach(story.enigmas) { enigma in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(enigma.name)
+                                    .font(.headline)
+                                Text(enigma.solution)
+                            }
+                        }
+                    }
+                    .onDelete(perform: removeItems)
+                }
+                Section {
                     Button {
                         showingAddEnigmaModal.toggle()
                     } label: {
@@ -40,7 +53,7 @@ struct AddStoryView: View {
             .sheet(
                 isPresented: $showingAddEnigmaModal
             ) {
-                AddEnigmaView()
+                AddEnigmaView(story: story)
             }
             // navigation toolbar
             .toolbar {
@@ -71,6 +84,10 @@ struct AddStoryView: View {
                 displayMode: .inline
             )
         }
+    }
+    
+    func removeItems(at offsets: IndexSet) {
+        story.enigmas.remove(atOffsets: offsets)
     }
 }
 

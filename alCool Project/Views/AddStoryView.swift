@@ -64,12 +64,6 @@ struct AddStoryView: View {
                 ){
                     Button {
                         stories.storiesList.append(story)
-                        if let encoded = try? JSONEncoder().encode(stories.storiesList) {
-                            UserDefaults.standard.set(encoded, forKey: "savedStories")
-                            print("encoding ok")
-                        } else {
-                            print("encoding fallito")
-                        }
                         
                         dismiss()
                     } label: {

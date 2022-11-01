@@ -15,7 +15,7 @@ struct Enigma: Identifiable, Codable {
     let solution: String
 }
 
-class Story: ObservableObject, Codable {
+class Story: ObservableObject, Codable, Identifiable {
     enum CodingKeys: CodingKey {
         case name, tokens, enigmas
     }
@@ -48,12 +48,21 @@ class Story: ObservableObject, Codable {
 
 }
 
-class Stories: ObservableObject, Codable {
+class Stories: ObservableObject, Codable, Identifiable {
     enum CodingKeys: CodingKey {
         case storiesList
     }
     
-    @Published var storiesList = [Story]()
+    @Published var storiesList = [Story]() {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(storiesList) {
+                UserDefaults.standard.set(encoded, forKey: "savedStories")
+                print("encoding ok")
+            } else {
+                print("encoding fallito")
+            }
+        }
+    }
     
     init() {
         if let data = UserDefaults.standard.data(forKey: "savedStories") {
@@ -76,42 +85,3 @@ class Stories: ObservableObject, Codable {
         storiesList = try container.decode([Story].self, forKey: .storiesList)
     }
 }
-
-
-/* -------------------
-Vecchio codice conservato come copia di sicurezza
- 
-class Story: ObservableObject {
-    @Published var name: String
-    @Published var tokens: Int
-    @Published var enigmas = [Enigma]() /*{
-        didSet {
-            if let encoded = try? JSONEncoder().encode(enigmas) {
-                UserDefaults.standard.set(encoded, forKey: "Enigmas")
-            }
-        }
-    } */
-    
-    init(name: String, tokens: Int) {
-        self.name = name
-        self.tokens = tokens
-        if let savedEnigmas = UserDefaults.standard.data(forKey: name) {
-            if let decodedEnigmas = try? JSONDecoder().decode([Enigma].self, from: savedEnigmas) {
-                enigmas = decodedEnigmas
-                return
-            }
-        }
-        enigmas = []
-    }
-}
-
-class Stories: ObservableObject {
-    @Published var storiesList = [Story]() /*{
-        didSet {
-            if let encoded = try? JSONEncoder().encode(storiesList) {
-                UserDefaults.standard.set(encoded, forKey: "Stories")
-            }
-        }
-    } Questo funziona solo se Story è conforme a Codable, cosa che richiede ulteriori passaggi */
-}
-*/

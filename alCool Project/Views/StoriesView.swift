@@ -19,7 +19,7 @@ struct StoriesView: View {
         NavigationStack {
             ZStack {
                 List {
-                    ForEach(stories.storiesList, id: \.name) { story in
+                    ForEach(stories.storiesList) { story in
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(story.name)
@@ -28,6 +28,7 @@ struct StoriesView: View {
                             }
                         }
                     }
+                    .onDelete(perform: removeStory)
                 }
                 /* Temporaneamente commentato - Da mostrare solo se stories.storiesList è vuoto
                 VStack {
@@ -85,6 +86,10 @@ struct StoriesView: View {
         .fullScreenCover(isPresented: $shouldShowOnboarding, content: {
             Onboarding(shouldShowOnboarding: $shouldShowOnboarding, skipButton: $skipButton)
         } )
+    }
+    
+    func removeStory(at offsets: IndexSet) {
+        stories.storiesList.remove(atOffsets: offsets)
     }
 }
 

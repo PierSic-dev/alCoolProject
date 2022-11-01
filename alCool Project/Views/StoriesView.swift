@@ -10,8 +10,8 @@ import SwiftUI
 struct StoriesView: View {
     @StateObject var stories = Stories()
     
-    @AppStorage("ShouldShowOnboarding") var ShouldShowOnboarding: Bool = true
-    @AppStorage("SkipButton") var SkipButton: Bool = true
+    @Binding var shouldShowOnboarding: Bool
+    @Binding var skipButton: Bool
     
     @State private var showingAddStoryModal = false
     
@@ -60,9 +60,9 @@ struct StoriesView: View {
                 .toolbar {
                     ToolbarItemGroup(placement: .bottomBar) {
                         Button {
-                            ShouldShowOnboarding.toggle()
-                            SkipButton.toggle()
-                            OnboardingView(ShouldShowOnboarding: $ShouldShowOnboarding, SkipButton: $SkipButton)
+                            shouldShowOnboarding.toggle()
+                            skipButton.toggle()
+                            Onboarding(shouldShowOnboarding: $shouldShowOnboarding, skipButton: $skipButton)
                         } label: {
                             Image(systemName: "questionmark")
                                 .foregroundColor(.accentColor)
@@ -83,14 +83,14 @@ struct StoriesView: View {
                 .navigationBarTitle("Stories")
             }
         }
-        .fullScreenCover(isPresented: $ShouldShowOnboarding, content: {
-            OnboardingView(ShouldShowOnboarding: $ShouldShowOnboarding, SkipButton: $SkipButton)
+        .fullScreenCover(isPresented: $shouldShowOnboarding, content: {
+            Onboarding(shouldShowOnboarding: $shouldShowOnboarding, skipButton: $skipButton)
         } )
     }
 }
 
 struct StoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        StoriesView().colorScheme(.dark)
+        StoriesView(stories: Stories(), shouldShowOnboarding: .constant(false), skipButton: .constant(false)).colorScheme(.dark)
     }
 }

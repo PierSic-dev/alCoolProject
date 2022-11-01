@@ -8,25 +8,8 @@
 import SwiftUI
 
 struct Onboarding: View {
-    @State var ShouldShowOnboarding: Bool = true
-    @State var SkipButton: Bool = true
-    var body: some View {
-        NavigationView {
-            VStack {
-                Text("It's time to get creative and have fun togheter!")
-            }
-            .navigationTitle("Welcome!")
-        }
-        .fullScreenCover(isPresented: $ShouldShowOnboarding, content: {
-            OnboardingView(ShouldShowOnboarding: $ShouldShowOnboarding, SkipButton: $SkipButton)
-        } )
-    }
-}
-
-// Onboarding
-struct OnboardingView: View {
-    @Binding var ShouldShowOnboarding: Bool
-    @Binding var SkipButton: Bool
+    @Binding var shouldShowOnboarding: Bool
+    @Binding var skipButton: Bool
     var body: some View {
         TabView {
             PageView (title: "Welcome!",
@@ -34,8 +17,8 @@ struct OnboardingView: View {
                       imagename: "bell",
                       showDismissButton: false,
                       showSkipButton: true,
-                      ShouldShowOnboarding: $ShouldShowOnboarding,
-                      SkipButton: $SkipButton)
+                      shouldShowOnboarding: $shouldShowOnboarding,
+                      skipButton: $skipButton)
                       
             
             PageView (title: "Create your Story.\nAdd photos, riddles and hints",
@@ -43,8 +26,8 @@ struct OnboardingView: View {
                       imagename: "bookmark",
                       showDismissButton: false,
                       showSkipButton: true,
-                      ShouldShowOnboarding: $ShouldShowOnboarding,
-                      SkipButton: $SkipButton)
+                      shouldShowOnboarding: $shouldShowOnboarding,
+                      skipButton: $skipButton)
                      
          
             PageView (title: "Get immersed in someone else’s story",
@@ -52,8 +35,8 @@ struct OnboardingView: View {
                       imagename: "house",
                       showDismissButton: true,
                       showSkipButton: false,
-                     ShouldShowOnboarding: $ShouldShowOnboarding,
-                      SkipButton: $SkipButton)
+                      shouldShowOnboarding: $shouldShowOnboarding,
+                      skipButton: $skipButton)
             
         }
         .tabViewStyle(PageTabViewStyle())
@@ -69,8 +52,8 @@ struct PageView: View {
     let showSkipButton: Bool
 
 
-    @Binding var ShouldShowOnboarding: Bool
-    @Binding var SkipButton: Bool
+    @Binding var shouldShowOnboarding: Bool
+    @Binding var skipButton: Bool
     var body: some View {
         VStack {
             Text(title)
@@ -91,7 +74,7 @@ struct PageView: View {
             
             if showSkipButton {
                 Button(action: {
-                    SkipButton.toggle()
+                    skipButton.toggle()
                 }, label: {
                     Text("Skip")
                         .bold()
@@ -104,7 +87,7 @@ struct PageView: View {
             
             if showDismissButton {
                 Button(action: {
-                    ShouldShowOnboarding.toggle()
+                    shouldShowOnboarding.toggle()
                 }, label: {
                     Text("Get Started!")
                         .bold()
@@ -115,28 +98,12 @@ struct PageView: View {
                 })
             }
         }
+        .foregroundColor(Color.white)
     }
 }
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
-        Onboarding()
+        Onboarding(shouldShowOnboarding: .constant(true), skipButton: .constant(true))
             .preferredColorScheme(.dark)
     }
 }
-
-struct pageControl : UIViewRepresentable {
-    var current = 0
-    
-    func makeUIView(context: UIViewRepresentableContext<pageControl>) -> UIPageControl {
-        
-        let page = UIPageControl()
-        page.currentPageIndicatorTintColor = .black
-        page.numberOfPages = 4
-        page.pageIndicatorTintColor = .gray
-        return page
-    }
-    func updateUIView(_ uiView: UIPageControl, context: UIViewRepresentableContext<pageControl>) {
-        
-        uiView.currentPage = current
-    }
-    }

@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct alCool_ProjectApp: App {
-    @State var ShouldShowOnboarding: Bool = true
-    @State var SkipButton: Bool = true
+    @State var shouldShowOnboarding: Bool = true
+    @State var skipButton: Bool = true
     
     var body: some Scene {
         WindowGroup {
-            StoriesView()
+            StoriesView(shouldShowOnboarding: $shouldShowOnboarding, skipButton: $skipButton)
                 .preferredColorScheme(.dark)
         }
     }

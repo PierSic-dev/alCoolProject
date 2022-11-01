@@ -30,13 +30,6 @@ struct StoriesView: View {
                     }
                     .onDelete(perform: removeStory)
                 }
-                /* Temporaneamente commentato - Da mostrare solo se stories.storiesList è vuoto
-                VStack {
-                    Text("There are no Stories...\nYet!")
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.secondary)
-                }
-                */
                 // navigation toolbar
                 .toolbar {
                     ToolbarItem(
@@ -81,6 +74,14 @@ struct StoriesView: View {
                     }
                 }
                 .navigationBarTitle("Stories")
+                
+                if stories.storiesList.isEmpty {
+                    VStack {
+                        Text("There are no Stories...\nYet!")
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.secondary)
+                    }
+                }
             }
         }
         .fullScreenCover(isPresented: $shouldShowOnboarding, content: {

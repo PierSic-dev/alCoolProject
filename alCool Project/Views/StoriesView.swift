@@ -62,7 +62,6 @@ struct StoriesView: View {
                         Button {
                             shouldShowOnboarding.toggle()
                             skipButton.toggle()
-                            Onboarding(shouldShowOnboarding: $shouldShowOnboarding, skipButton: $skipButton)
                         } label: {
                             Image(systemName: "questionmark")
                                 .foregroundColor(.accentColor)

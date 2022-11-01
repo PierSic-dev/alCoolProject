@@ -74,7 +74,7 @@ struct PageView: View {
             
             if showSkipButton {
                 Button(action: {
-                    skipButton.toggle()
+                    shouldShowOnboarding.toggle()
                 }, label: {
                     Text("Skip")
                         .bold()

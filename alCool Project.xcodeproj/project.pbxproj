@@ -18,6 +18,7 @@
 		889EBCF429069B7C00D6750A /* AddStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889EBCF329069B7C00D6750A /* AddStoryView.swift */; };
 		889EBCF6291192AF00D6750A /* DetailedStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889EBCF5291192AF00D6750A /* DetailedStoryView.swift */; };
 		889EBCF829119B4500D6750A /* DetailedEnigmaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889EBCF729119B4500D6750A /* DetailedEnigmaView.swift */; };
+		889EBCFA2911A60100D6750A /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889EBCF92911A60100D6750A /* PlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		889EBCF329069B7C00D6750A /* AddStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryView.swift; sourceTree = "<group>"; };
 		889EBCF5291192AF00D6750A /* DetailedStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedStoryView.swift; sourceTree = "<group>"; };
 		889EBCF729119B4500D6750A /* DetailedEnigmaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEnigmaView.swift; sourceTree = "<group>"; };
+		889EBCF92911A60100D6750A /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				889EBCF12905919500D6750A /* AddEnigmaView.swift */,
 				889EBCF5291192AF00D6750A /* DetailedStoryView.swift */,
 				889EBCF729119B4500D6750A /* DetailedEnigmaView.swift */,
+				889EBCF92911A60100D6750A /* PlayView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				889EBCF829119B4500D6750A /* DetailedEnigmaView.swift in Sources */,
 				889EBCDD29048B1F00D6750A /* alCool_ProjectApp.swift in Sources */,
 				889EBCED290490BA00D6750A /* StoriesView.swift in Sources */,
+				889EBCFA2911A60100D6750A /* PlayView.swift in Sources */,
 				889EBCF22905919500D6750A /* AddEnigmaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -83,10 +83,8 @@ struct AddStoryView: View {
                     }
                 }
             }
-            .navigationBarTitle(
-                "Add Story",
-                displayMode: .inline
-            )
+            .navigationTitle("Add Story")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
     

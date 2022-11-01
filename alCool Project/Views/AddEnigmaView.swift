@@ -117,10 +117,8 @@ struct AddEnigmaView: View {
                     }
                 }
             }
-            .navigationBarTitle(
-                "Add Enigma",
-                displayMode: .inline
-            )
+            .navigationTitle("Add Enigma")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

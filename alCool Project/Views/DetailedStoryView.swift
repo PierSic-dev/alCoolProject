@@ -10,6 +10,8 @@ import SwiftUI
 struct DetailedStoryView: View {
     var story: Story
     
+    @State private var showingPlayView = false
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -44,7 +46,7 @@ struct DetailedStoryView: View {
                     placement: .bottomBar
                 ){
                     Button {
-                        print("ciao")
+                        showingPlayView.toggle()
                     } label: {
                         Text("Play")
                             .bold()
@@ -52,13 +54,14 @@ struct DetailedStoryView: View {
                             .scaledToFit()
                             .frame(width: 45, height: 45, alignment: .center)
                     }
+                    .fullScreenCover(isPresented: $showingPlayView) {
+                        PlayView(story: story)
+                    }
                 }
             }
+            .navigationTitle(story.name)
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationBarTitle(
-            story.name,
-            displayMode: .inline
-        )
     }
     
     func removeItems(at offsets: IndexSet) {

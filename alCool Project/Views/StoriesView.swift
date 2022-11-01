@@ -51,18 +51,9 @@ struct StoriesView: View {
                             }
                             .scaledToFit()
                             .frame(width: 45, height: 45, alignment: .center)
-                            //                        Spacer()
-                            //                        Button {
-                            //                            print("Join")
-                            //                        } label: {
-                            //                            Text("Join")
-                            //                                .foregroundColor(.accentColor)
-                            //                        }
-                            //                        .scaledToFit()
-                            //                        .frame(width: 45, height: 45, alignment: .center)
                         }
                     }
-                    .navigationBarTitle("Stories")
+                    .navigationTitle("Stories")
             }
         }
         .fullScreenCover(isPresented: $shouldShowOnboarding, content: {

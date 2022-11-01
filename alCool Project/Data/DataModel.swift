@@ -46,6 +46,12 @@ class Story: ObservableObject, Codable, Identifiable {
         self.tokens = tokens
         enigmas = []
     }
+    
+    init(name: String, tokens: Int, enigmas: [Enigma]) {
+        self.name = name
+        self.tokens = tokens
+        self.enigmas = enigmas
+    }
 
 }
 

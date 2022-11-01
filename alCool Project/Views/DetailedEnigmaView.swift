@@ -43,6 +43,10 @@ struct DetailedEnigmaView: View {
                     Text("Solution")
                 }
             }
+            .navigationBarTitle(
+                enigma.name,
+                displayMode: .inline
+            )
         }
     }
 }

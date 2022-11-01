@@ -63,13 +63,13 @@ struct AddStoryView: View {
                     placement: .navigationBarTrailing
                 ){
                     Button {
-                        if let encoded = try? JSONEncoder().encode(story.enigmas) {
-                            UserDefaults.standard.set(encoded, forKey: story.name)
+                        stories.storiesList.append(story)
+                        if let encoded = try? JSONEncoder().encode(stories.storiesList) {
+                            UserDefaults.standard.set(encoded, forKey: "savedStories")
                             print("encoding ok")
                         } else {
                             print("encoding fallito")
                         }
-                        stories.storiesList.append(story)
                         
                         dismiss()
                     } label: {

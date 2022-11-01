@@ -48,8 +48,33 @@ class Story: ObservableObject, Codable {
 
 }
 
-class Stories: ObservableObject {
+class Stories: ObservableObject, Codable {
+    enum CodingKeys: CodingKey {
+        case storiesList
+    }
+    
     @Published var storiesList = [Story]()
+    
+    init() {
+        if let data = UserDefaults.standard.data(forKey: "savedStories") {
+            if let decoded = try? JSONDecoder().decode([Story].self, from: data) {
+                storiesList = decoded
+                return
+            }
+        }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(storiesList, forKey: .storiesList)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        storiesList = try container.decode([Story].self, forKey: .storiesList)
+    }
 }
 
 

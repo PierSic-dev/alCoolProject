@@ -14,7 +14,7 @@ struct Onboarding: View {
         TabView {
             PageView (title: "Welcome!",
                       subtitle: "It’s time to get creative and have fun together!",
-                      imagename: "bell",
+                      imagename: "Key",
                       showDismissButton: false,
                       showSkipButton: true,
                       shouldShowOnboarding: $shouldShowOnboarding,
@@ -23,7 +23,7 @@ struct Onboarding: View {
             
             PageView (title: "Create your Story.\nAdd photos, riddles and hints",
                       subtitle: "Unleash your fantasy!",
-                      imagename: "bookmark",
+                      imagename: "CreationSession",
                       showDismissButton: false,
                       showSkipButton: true,
                       shouldShowOnboarding: $shouldShowOnboarding,
@@ -32,7 +32,7 @@ struct Onboarding: View {
          
             PageView (title: "Get immersed in someone else’s story",
                       subtitle: "Solve a sequence of enigmas together with your peers.\nReady to play?",
-                      imagename: "house",
+                      imagename: "GameSession",
                       showDismissButton: true,
                       showSkipButton: false,
                       shouldShowOnboarding: $shouldShowOnboarding,
@@ -56,21 +56,22 @@ struct PageView: View {
     @Binding var skipButton: Bool
     var body: some View {
         VStack {
-            Text(title)
-                .font(.system(size: 32))
-                .fontWeight(.medium)
-                .padding()
 
-            Image(systemName: imagename)
+            Text(title)
+                .font(.title)
+                .fontWeight(.bold)
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: 150, alignment: .topLeading)
+
+            Image(imagename)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 150, height: 150)
+                .frame(maxWidth: .infinity, maxHeight: 150)
+
+                Text(subtitle)
+                .font(.title2)
                 .padding()
-           
-            
-            Text(subtitle)
-                .font(.system(size: 24))
-                .padding()
+                .frame(maxWidth: .infinity, maxHeight: 150, alignment: .topLeading)
             
             if showSkipButton {
                 Button(action: {
@@ -84,7 +85,7 @@ struct PageView: View {
                         .cornerRadius(6)
                 })
             }
-            
+
             if showDismissButton {
                 Button(action: {
                     shouldShowOnboarding.toggle()
@@ -93,14 +94,16 @@ struct PageView: View {
                         .bold()
                         .foregroundColor(Color.white)
                         .frame(width: 200, height: 50)
-                        .background(Color.green)
+                        .background(Color("AccentColor"))
                         .cornerRadius(6)
                 })
             }
         }
         .foregroundColor(Color.white)
+
     }
 }
+
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
         Onboarding(shouldShowOnboarding: .constant(true), skipButton: .constant(true))

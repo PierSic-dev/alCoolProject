@@ -80,7 +80,7 @@ struct StoriesView: View {
                             VStack(alignment: .leading) {
                                 Text(story.name)
                                     .font(.headline)
-                                Text(story.tokens, format: .number)
+                                Text("Tokens: \(story.tokens)")
                             }
                         }
                     }

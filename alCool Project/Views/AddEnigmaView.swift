@@ -27,7 +27,6 @@ struct AddEnigmaView: View {
                 matching: .images
             ) {
                 ZStack {
-                    
                     if selectedPhoto.isEmpty {
                         RoundedRectangle(cornerRadius: 10)
                             .padding(20)
@@ -48,7 +47,6 @@ struct AddEnigmaView: View {
                                 .padding(20)
                         }
                     }
-                        
                 }
             }
             .onChange(of: selectedPhoto) { newValue in
@@ -69,23 +67,6 @@ struct AddEnigmaView: View {
                     }
                 }
             }
-            /*
-             .onChange(of: selectedItem) { newValue in
-                             guard let item = selectedItem.first else {
-                                 return
-                             }
-                             item.loadTransferable(type: Data.self) { result in
-                                 switch result {
-                                 case .success(let data):
-                                     if let data = data {
-                                         self.data = data
-                                     }
-                                 case .failure(let failure):
-                                     print("Error: \(failure.localizedDescription)")
-                                 }
-                             }
-                         }
-             */
             Form {
                 Section {
                     TextField("", text: $name)

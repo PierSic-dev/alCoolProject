@@ -20,49 +20,49 @@ struct StoriesView: View {
             ZStack {
                 content()
                 // navigation toolbar
-                .toolbar {
-                    ToolbarItem(
-                        placement: .navigationBarTrailing
-                    ){
-                        Button {
-                            showingAddStoryModal.toggle()
-                        } label: {
-                            Image(systemName: "plus")
-                                .foregroundColor(.accentColor)
-                        }
-                        .scaledToFit()
-                        .frame(width: 45, height: 45, alignment: .center)
-                        .sheet(
-                            isPresented: $showingAddStoryModal
+                    .toolbar {
+                        ToolbarItem(
+                            placement: .navigationBarTrailing
                         ){
-                            AddStoryView(stories: stories)
+                            Button {
+                                showingAddStoryModal.toggle()
+                            } label: {
+                                Image(systemName: "plus")
+                                    .foregroundColor(.accentColor)
+                            }
+                            .scaledToFit()
+                            .frame(width: 45, height: 45, alignment: .center)
+                            .sheet(
+                                isPresented: $showingAddStoryModal
+                            ){
+                                AddStoryView(stories: stories)
+                            }
                         }
                     }
-                }
                 // bottom toolbar
-                .toolbar {
-                    ToolbarItemGroup(placement: .bottomBar) {
-                        Button {
-                            shouldShowOnboarding.toggle()
-                            skipButton.toggle()
-                        } label: {
-                            Image(systemName: "questionmark")
-                                .foregroundColor(.accentColor)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .bottomBar) {
+                            Button {
+                                shouldShowOnboarding.toggle()
+                                skipButton.toggle()
+                            } label: {
+                                Image(systemName: "questionmark")
+                                    .foregroundColor(.accentColor)
+                            }
+                            .scaledToFit()
+                            .frame(width: 45, height: 45, alignment: .center)
+                            //                        Spacer()
+                            //                        Button {
+                            //                            print("Join")
+                            //                        } label: {
+                            //                            Text("Join")
+                            //                                .foregroundColor(.accentColor)
+                            //                        }
+                            //                        .scaledToFit()
+                            //                        .frame(width: 45, height: 45, alignment: .center)
                         }
-                        .scaledToFit()
-                        .frame(width: 45, height: 45, alignment: .center)
-                        Spacer()
-                        Button {
-                            print("Join")
-                        } label: {
-                            Text("Join")
-                                .foregroundColor(.accentColor)
-                        }
-                        .scaledToFit()
-                        .frame(width: 45, height: 45, alignment: .center)
                     }
-                }
-                .navigationBarTitle("Stories")
+                    .navigationBarTitle("Stories")
             }
         }
         .fullScreenCover(isPresented: $shouldShowOnboarding, content: {
@@ -84,11 +84,13 @@ struct StoriesView: View {
         } else {
             List {
                 ForEach(stories.storiesList) { story in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(story.name)
-                                .font(.headline)
-                            Text(story.tokens, format: .number)
+                    NavigationLink(destination: DetailedStoryView(story: story)) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(story.name)
+                                    .font(.headline)
+                                Text(story.tokens, format: .number)
+                            }
                         }
                     }
                 }

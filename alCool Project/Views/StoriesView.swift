@@ -18,18 +18,7 @@ struct StoriesView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                List {
-                    ForEach(stories.storiesList) { story in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(story.name)
-                                    .font(.headline)
-                                Text(story.tokens, format: .number)
-                            }
-                        }
-                    }
-                    .onDelete(perform: removeStory)
-                }
+                content()
                 // navigation toolbar
                 .toolbar {
                     ToolbarItem(
@@ -74,14 +63,6 @@ struct StoriesView: View {
                     }
                 }
                 .navigationBarTitle("Stories")
-                
-                if stories.storiesList.isEmpty {
-                    VStack {
-                        Text("There are no Stories...\nYet!")
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.secondary)
-                    }
-                }
             }
         }
         .fullScreenCover(isPresented: $shouldShowOnboarding, content: {
@@ -91,6 +72,29 @@ struct StoriesView: View {
     
     func removeStory(at offsets: IndexSet) {
         stories.storiesList.remove(atOffsets: offsets)
+    }
+    
+    @ViewBuilder func content() -> some View {
+        if stories.storiesList.isEmpty {
+            VStack {
+                Text("There are no Stories...\nYet!")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
+            }
+        } else {
+            List {
+                ForEach(stories.storiesList) { story in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(story.name)
+                                .font(.headline)
+                            Text(story.tokens, format: .number)
+                        }
+                    }
+                }
+                .onDelete(perform: removeStory)
+            }
+        }
     }
 }
 

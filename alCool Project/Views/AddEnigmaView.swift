@@ -13,9 +13,7 @@ struct AddEnigmaView: View {
     @ObservedObject var story: Story
     
     @State private var selectedPhoto: [PhotosPickerItem] = []
-    @State private var data: Data?
-    
-    // Enigma text data
+    @State private var imageData: Data?
     @State private var name = ""
     @State private var riddle = ""
     @State private var hint = ""
@@ -41,7 +39,7 @@ struct AddEnigmaView: View {
                             .frame(width: 45, height: 45, alignment: .center)
                             .foregroundColor(.accentColor)
                     } else {
-                        if let data = data, let image = UIImage(data: data) {
+                        if let data = imageData, let image = UIImage(data: data) {
                             Image(uiImage: image)
                                 .resizable()
                                 .scaledToFill()
@@ -61,7 +59,7 @@ struct AddEnigmaView: View {
                     switch result {
                     case .success(let data):
                         if let data = data {
-                            self.data = data
+                            self.imageData = data
                         } else {
                             print("Data is nil")
                         }
@@ -117,7 +115,7 @@ struct AddEnigmaView: View {
                     placement: .navigationBarTrailing
                 ){
                     Button {
-                        let enigma = Enigma(name: name, riddle: riddle, hint: hint, solution: solution)
+                        let enigma = Enigma(image: imageData!, name: name, riddle: riddle, hint: hint, solution: solution)
                         story.enigmas.append(enigma)
                         
                         dismiss()

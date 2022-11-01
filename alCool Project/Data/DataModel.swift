@@ -9,6 +9,7 @@ import Foundation
 
 struct Enigma: Identifiable, Codable {
     var id = UUID()
+    let image: Data
     let name: String
     let riddle: String
     let hint: String

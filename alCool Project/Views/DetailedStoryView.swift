@@ -32,7 +32,6 @@ struct DetailedStoryView: View {
                                 VStack(alignment: .leading) {
                                     Text(enigma.name)
                                         .font(.headline)
-                                    Text(enigma.solution)
                                 }
                             }
                         }
